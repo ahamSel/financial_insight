@@ -1,0 +1,55 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+
+.card {
+  margin: 2rem auto;
+  padding: 2em;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.text-muted {
+  color: #888;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #40005d;
+  color: white;
+  background: #40005d;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+button:hover,
+button:active {
+  background: #510674;
+  border-color: #510674;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,0 +1,83 @@
+.expenseItem {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.expenseDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 5.5rem;
+    height: 5.5rem;
+    border: 1px solid #ececec;
+    background-color: #2a2a2a;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+}
+
+.expenseDateMonth {
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.expenseDateYear {
+    font-size: 0.65rem;
+}
+
+.expenseDateDay {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.expenseDescription {
+    flex-grow: 1;
+    padding-right: 2rem;
+}
+
+.expenseDescription h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #363636;
+    word-break: break-word;
+}
+
+.expenseAmount {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ad5400;
+    background-color: #ffd7aa;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+}
+
+.closeButton {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: #ad5400;
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+    background-color: transparent;
+    box-shadow: none;
+    color: #ff6b6b;
+}

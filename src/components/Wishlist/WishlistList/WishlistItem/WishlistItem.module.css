@@ -1,0 +1,64 @@
+.wishlistItem {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+    background-color: #f0f8ff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.itemDetails h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    word-break: break-word;
+}
+
+.cost {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #008000;
+    background-color: #dfffdf;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: auto;
+    padding-left: 2rem;
+}
+
+.removeButton {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: #007bff;  /* Blue color for the remove button */
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+.removeButton:hover,
+.removeButton:focus {
+    background-color: transparent;
+    box-shadow: none;
+    color: #ff6b6b;  /* Red color on hover for removal */
+}
