@@ -17,7 +17,7 @@ interface IncomeListProps {
 
 const IncomeList: React.FC<IncomeListProps> = (props) => {
   if (props.items.length === 0) {
-    return <h2 className={styles.incomeListFallback}>No income submitted.</h2>;
+    return <h2 className={styles.incomeListFallback}>No income added.</h2>;
   }
 
   return (

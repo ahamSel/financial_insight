@@ -17,9 +17,7 @@ type ExpenseListProps = {
 
 const ExpenseList: React.FC<ExpenseListProps> = (props) => {
   if (props.items.length === 0) {
-    return (
-      <h2 className={styles.expensesListFallback}>No expenses submitted.</h2>
-    );
+    return <h2 className={styles.expensesListFallback}>No expenses added.</h2>;
   }
 
   return (
