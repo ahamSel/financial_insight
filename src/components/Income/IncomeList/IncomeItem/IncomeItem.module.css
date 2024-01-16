@@ -1,4 +1,4 @@
-.expenseItem {
+.incomeItem {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -6,56 +6,51 @@
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 12px;
-    background-color: #f7f7f7;
+    background-color: #e7f4e4;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.expenseDate {
+.incomeDate {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 5.5rem;
     height: 5.5rem;
-    border: 1px solid #ececec;
-    background-color: #2a2a2a;
+    border: 1px solid #d4edd9;
+    background-color: #1e7d22;
     color: white;
     border-radius: 12px;
     margin-right: 1rem;
 }
 
-.expenseDateMonth {
+.incomeDateMonth, .incomeDateYear, .incomeDateDay {
     font-size: 0.75rem;
     font-weight: bold;
 }
 
-.expenseDateYear {
-    font-size: 0.65rem;
-}
-
-.expenseDateDay {
+.incomeDateDay {
     font-size: 1.5rem;
-    font-weight: bold;
 }
 
-.expenseDescription {
+.incomeDescription {
     flex-grow: 1;
     padding-right: 2rem;
 }
 
-.expenseDescription h2 {
+.incomeDescription h2 {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
-    color: #363636;
+    color: #2e4620;
     word-break: break-word;
 }
 
-.expenseAmount {
+.incomeAmount {
     font-size: 1rem;
     font-weight: 500;
-    color: #ad5400;
-    background-color: #ffd7aa;
+    color: #2e8b57;
+    background-color: #aee1c9;
     padding: 0.5rem 1.5rem;
     border-radius: 12px;
 }
@@ -66,7 +61,7 @@
     right: 0.5rem;
     background-color: transparent;
     border: none;
-    color: #ad5400;
+    color: #1e7d22;
     font-weight: bold;
     font-size: 1.25rem;
     cursor: pointer;
@@ -82,12 +77,12 @@
     color: #ff6b6b;
 }
 
-.expenseRecurrence {
+.incomeRecurrence {
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: #ad5400;
+    color: #2e8b57;
     font-weight: bold;
-    background-color: #ffd7aa;
+    background-color: #aee1c9;
     padding: 0.3rem 0.6rem;
     border-radius: 8px;
     display: inline-block;

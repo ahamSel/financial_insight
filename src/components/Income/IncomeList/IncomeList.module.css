@@ -1,0 +1,10 @@
+.incomeList {
+    list-style: none;
+    padding: 0;
+}
+
+.incomeListFallback {
+    color: #a9a9a9;
+    text-align: center;
+    padding: 1rem;
+}

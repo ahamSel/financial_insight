@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./ExpenseItem.module.css";
+import styles from "./IncomeItem.module.css";
 
-interface ExpenseItemProps {
+interface IncomeItemProps {
   id: string;
   date: Date;
   title: string;
@@ -10,23 +10,23 @@ interface ExpenseItemProps {
   onRemove: (id: string) => void;
 }
 
-const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
+const IncomeItem: React.FC<IncomeItemProps> = (props) => {
   const month = props.date.toLocaleString("en-US", { month: "long" });
   const day = props.date.toLocaleString("en-US", { day: "2-digit" });
   const year = props.date.getFullYear();
 
   return (
-    <li className={styles.expenseItem}>
-      <div className={styles.expenseDate}>
-        <div className={styles.expenseDateMonth}>{month}</div>
-        <div className={styles.expenseDateYear}>{year}</div>
-        <div className={styles.expenseDateDay}>{day}</div>
+    <li className={styles.incomeItem}>
+      <div className={styles.incomeDate}>
+        <div className={styles.incomeDateMonth}>{month}</div>
+        <div className={styles.incomeDateYear}>{year}</div>
+        <div className={styles.incomeDateDay}>{day}</div>
       </div>
-      <div className={styles.expenseDescription}>
+      <div className={styles.incomeDescription}>
         <h2>{props.title}</h2>
-        <div className={styles.expenseAmount}>${props.amount.toFixed(2)}</div>
+        <div className={styles.incomeAmount}>${props.amount.toFixed(2)}</div>
         {props.recurrence && props.recurrence !== "One-Time" && (
-          <div className={styles.expenseRecurrence}>{props.recurrence}</div>
+          <div className={styles.incomeRecurrence}>{props.recurrence}</div>
         )}
       </div>
       <button
@@ -39,4 +39,4 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   );
 };
 
-export default ExpenseItem;
+export default IncomeItem;

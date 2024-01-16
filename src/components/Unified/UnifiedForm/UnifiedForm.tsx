@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import styles from "./UnifiedForm.module.css";
 
+const recurrenceOptions = [
+  "One-Time",
+  "Daily",
+  "Weekly",
+  "Bi-Weekly",
+  "Monthly",
+  "Yearly",
+];
+
 interface UnifiedFormProps {
   onAddEntry: (entryData: {
     type: string;
     title: string;
     amount: number;
     date: Date;
+    recurrence?: string;
   }) => void;
 }
 
@@ -16,6 +26,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
+  const [recurrence, setRecurrence] = useState(recurrenceOptions[0]);
 
   const resetForm = () => {
     setTitle("");
@@ -55,6 +66,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
       title,
       amount: parseFloat(amount),
       date: new Date(date),
+      ...(selectedType !== "wishlist" && { recurrence }),
     };
 
     onAddEntry(entryData);
@@ -93,6 +105,20 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
         onChange={(e) => setDate(e.target.value)}
         className={styles.inputStyles}
       />
+
+      {(selectedType === "income" || selectedType === "expense") && (
+        <select
+          value={recurrence}
+          onChange={(e) => setRecurrence(e.target.value)}
+          className={styles.selectStyles}
+        >
+          {recurrenceOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      )}
 
       {error && <p className={styles.errorStyles}>{error}</p>}
 

@@ -53,3 +53,28 @@ button:active {
     padding: 0.5rem 1rem;
   }
 }
+
+.lists-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.expenseList, .wishlistList, .incomeList {
+  width: 100%;
+  max-width: 32%;
+}
+
+@media (max-width: 768px) {
+  .expenseList, .wishlistList, .incomeList {
+      max-width: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .expenseList, .wishlistList, .incomeList {
+      max-width: 100%;
+  }
+}

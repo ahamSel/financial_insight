@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Header from "./components/Header/Header";
-import UnifiedForm from "./components/Unified/UnifiedForm/UnifiedForm"; // Import the UnifiedForm
+import UnifiedForm from "./components/Unified/UnifiedForm/UnifiedForm";
 import ExpenseList from "./components/Expense/ExpenseList/ExpenseList";
 import WishlistList from "./components/Wishlist/WishlistList/WishlistList";
+import IncomeList from "./components/Income/IncomeList/IncomeList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.css";
 
@@ -43,9 +44,32 @@ const initialWishlist = [
   },
 ];
 
+const initialIncome = [
+  {
+    id: "i1",
+    date: new Date(2021, 7, 14),
+    title: "Paycheck",
+    amount: 2000,
+    recurrence: "Bi-Weekly",
+  },
+  {
+    id: "i2",
+    date: new Date(2021, 2, 12),
+    title: "Paycheck",
+    amount: 2000,
+  },
+  {
+    id: "i3",
+    date: new Date(2021, 9, 29),
+    title: "Grandma's Money",
+    amount: 20000,
+  },
+];
+
 function App() {
   const [expenses, setExpenses] = useState(initialExpenses);
   const [wishlist, setWishlist] = useState(initialWishlist);
+  const [income, setIncome] = useState(initialIncome);
 
   // Add a new expense, wishlist item, or income
   const handleAddEntry = (entryData: {
@@ -53,6 +77,7 @@ function App() {
     title: string;
     amount: number;
     date: Date;
+    recurrence?: string;
   }) => {
     if (entryData.type === "expense") {
       const newExpense = {
@@ -68,8 +93,13 @@ function App() {
         id: `w${wishlist.length + 1}`,
       };
       setWishlist((prevWishlist) => [newWishlistItem, ...prevWishlist]);
+    } else if (entryData.type === "income") {
+      const newIncome = {
+        ...entryData,
+        id: `i${income.length + 1}`,
+      };
+      setIncome((prevIncome) => [newIncome, ...prevIncome]);
     }
-    // Add case for 'income' once implemented
   };
 
   const removeExpenseHandler = (id: string) => {
@@ -81,6 +111,12 @@ function App() {
   const removeWishlistItemHandler = (id: string) => {
     setWishlist((prevWishlist) =>
       prevWishlist.filter((item) => item.id !== id)
+    );
+  };
+
+  const removeIncomeHandler = (id: string) => {
+    setIncome((prevIncome) =>
+      prevIncome.filter((incomeItem) => incomeItem.id !== id)
     );
   };
 
@@ -96,7 +132,7 @@ function App() {
             items={wishlist}
             onRemoveItem={removeWishlistItemHandler}
           />
-          {/* IncomeList here */}
+          <IncomeList items={income} onRemove={removeIncomeHandler} />
         </div>
       </main>
     </div>

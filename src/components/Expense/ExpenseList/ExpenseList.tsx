@@ -7,6 +7,7 @@ type ExpenseData = {
   date: Date;
   title: string;
   amount: number;
+  recurrence?: string;
 };
 
 type ExpenseListProps = {
@@ -30,6 +31,7 @@ const ExpenseList: React.FC<ExpenseListProps> = (props) => {
           date={expense.date}
           title={expense.title}
           amount={expense.amount}
+          recurrence={expense.recurrence}
           onRemove={props.onRemove}
         />
       ))}
