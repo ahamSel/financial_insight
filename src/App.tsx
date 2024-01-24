@@ -120,6 +120,33 @@ function App() {
     );
   };
 
+  const getFinancialInsights = async () => {
+    const financialData = {
+      expenses: expenses,
+      wishlist: wishlist,
+      income: income,
+    };
+
+    console.log(financialData);
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/financial-insights",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(financialData),
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error("Error sending data to backend:", error);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -133,6 +160,7 @@ function App() {
             onRemoveItem={removeWishlistItemHandler}
           />
           <IncomeList items={income} onRemove={removeIncomeHandler} />
+          <button onClick={getFinancialInsights}>Get Insights</button>
         </div>
       </main>
     </div>
