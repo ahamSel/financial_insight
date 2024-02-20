@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from routes import create_routes
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 create_routes(app)
 

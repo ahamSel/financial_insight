@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from services import get_financial_insights, process_financial_data
+from services import process_financial_data
 
 
 def create_routes(app):

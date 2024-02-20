@@ -70,6 +70,7 @@ function App() {
   const [expenses, setExpenses] = useState(initialExpenses);
   const [wishlist, setWishlist] = useState(initialWishlist);
   const [income, setIncome] = useState(initialIncome);
+  const [insights, setInsights] = useState("");
 
   // Add a new expense, wishlist item, or income
   const handleAddEntry = (entryData: {
@@ -120,18 +121,26 @@ function App() {
     );
   };
 
-  const getFinancialInsights = async () => {
-    const financialData = {
-      expenses: expenses,
-      wishlist: wishlist,
-      income: income,
-    };
+  const simulateTypingEffect = (text: string, index = 0) => {
+    if (index < text.length) {
+      setInsights((prev) => prev + text[index]);
+      setTimeout(() => simulateTypingEffect(text, index + 1), 25);
+    }
+  };
 
-    console.log(financialData);
+  const getFinancialInsights = async () => {
+    if (expenses.length === 0 || wishlist.length === 0 || income.length === 0) {
+      alert(
+        "You need at least 1 income, expense, and wishlist item to get insights."
+      );
+      return;
+    }
+
+    const financialData = { expenses, wishlist, income };
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/financial-insights",
+        "http://127.0.0.1:5000/api/financial-insights",
         {
           method: "POST",
           headers: {
@@ -141,7 +150,9 @@ function App() {
         }
       );
       const responseData = await response.json();
-      console.log(responseData);
+      const cleanedInsights = responseData.insights.replace(/\n +/g, "\n");
+      setInsights("");
+      simulateTypingEffect(cleanedInsights);
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
@@ -149,9 +160,7 @@ function App() {
 
   return (
     <div>
-      <Header />
       <main>
-        <Dashboard expenses={expenses} />
         <UnifiedForm onAddEntry={handleAddEntry} />
         <div className="lists-container">
           <ExpenseList items={expenses} onRemove={removeExpenseHandler} />
@@ -160,8 +169,13 @@ function App() {
             onRemoveItem={removeWishlistItemHandler}
           />
           <IncomeList items={income} onRemove={removeIncomeHandler} />
-          <button onClick={getFinancialInsights}>Get Insights</button>
         </div>
+        <button onClick={getFinancialInsights}>Get Insights</button>
+        <textarea
+          value={insights}
+          readOnly
+          className="insights-textarea"
+        ></textarea>
       </main>
     </div>
   );
