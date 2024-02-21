@@ -7,25 +7,27 @@ import IncomeList from "./components/Income/IncomeList/IncomeList";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.css";
 
-// Dummy data for expenses and wishlist
+// Dummy data
 const initialExpenses = [
   {
     id: "e1",
-    date: new Date(2022, 7, 14),
+    date: new Date(2024, 1, 25),
     title: "Grocery Shopping",
     amount: 54.32,
   },
   {
     id: "e2",
-    date: new Date(2022, 2, 12),
-    title: "Car Insurance",
-    amount: 296.67,
+    date: new Date(2024, 2, 1),
+    title: "Insurance",
+    amount: 321.67,
+    recurrence: "Yearly",
   },
   {
     id: "e3",
-    date: new Date(2022, 9, 29),
-    title: "New Desk (Wooden)",
-    amount: 450,
+    date: new Date(2024, 3, 10),
+    title: "Electricity Bill",
+    amount: 130,
+    recurrence: "Monthly",
   },
 ];
 
@@ -34,35 +36,41 @@ const initialWishlist = [
     id: "w1",
     title: "New Laptop",
     cost: 1200,
-    desiredDate: new Date(2023, 5, 15),
+    desiredDate: new Date(2024, 8, 10),
   },
   {
     id: "w2",
     title: "Vacation to Hawaii",
-    cost: 3000,
-    desiredDate: new Date(2023, 11, 20),
+    cost: 4000,
+    desiredDate: new Date(2025, 11, 20),
+  },
+  {
+    id: "w3",
+    title: "New Car",
+    cost: 25000,
+    desiredDate: new Date(2026, 2, 15),
   },
 ];
 
 const initialIncome = [
   {
     id: "i1",
-    date: new Date(2021, 7, 14),
+    date: new Date(2024, 2, 10),
     title: "Paycheck",
-    amount: 2000,
+    amount: 2570,
     recurrence: "Bi-Weekly",
   },
   {
     id: "i2",
-    date: new Date(2021, 2, 12),
-    title: "Paycheck",
-    amount: 2000,
+    date: new Date(2025, 0, 15),
+    title: "Contract Work",
+    amount: 34630,
   },
   {
     id: "i3",
-    date: new Date(2021, 9, 29),
-    title: "Grandma's Money",
-    amount: 20000,
+    date: new Date(2024, 9, 29),
+    title: "Grandma's Gift",
+    amount: 40000,
   },
 ];
 

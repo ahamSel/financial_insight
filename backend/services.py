@@ -24,8 +24,8 @@ def generate_prompt(data):
         f"Incomes: {income_details}\n"
         f"Expenses: {expense_details}\n"
         f"Wishlist: {wishlist_details}\n"
-        "Provide specific, actionable budgeting and savings advice in simple text, formatted as bullet points. "
-        "Include all provided details for personalized insights. "
+        "Provide specific, actionable budgeting and savings advice in simple text (avoid Markdown formatting), formatted as bullet points. "
+        "Include all provided details for personalized insights. All points should be directly about the the data provided."
     )
     return prompt
 

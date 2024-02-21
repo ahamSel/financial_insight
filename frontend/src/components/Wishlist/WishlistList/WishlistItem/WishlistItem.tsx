@@ -30,7 +30,7 @@ const WishlistItem: React.FC<WishlistItemProps> = ({
         <p>{`${day} ${month} ${year}`}</p>
       </div>
       <button onClick={() => onRemove(id)} className={styles.removeButton}>
-        Remove
+        &#x2715;
       </button>
     </li>
   );

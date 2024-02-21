@@ -47,7 +47,7 @@
     right: 0.5rem;
     background-color: transparent;
     border: none;
-    color: #007bff;  /* Blue color for the remove button */
+    color: #007bff;
     font-weight: bold;
     font-size: 1.25rem;
     cursor: pointer;
@@ -60,5 +60,5 @@
 .removeButton:focus {
     background-color: transparent;
     box-shadow: none;
-    color: #ff6b6b;  /* Red color on hover for removal */
+    color: #ff6b6b;
 }
