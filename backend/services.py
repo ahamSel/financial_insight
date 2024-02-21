@@ -6,54 +6,84 @@ load_dotenv()
 
 
 def generate_prompt(data):
-    income_details = " and ".join(
-        [f"a {income.get('recurrence', 'one-time').lower()} income of ${income['amount']}" for income in data['income']])
-    expense_details = " and ".join(
-        [f"monthly expenses such as {expense['title'].lower()} costing ${expense['amount']}" for expense in data['expenses']])
-    wishlist_details = " and ".join(
-        [f"wishlist items like {item['title'].lower()} costing ${item['cost']}" for item in data['wishlist']])
+    income_details = "; ".join([
+        f"{income['title']} ({income.get('recurrence', 'one-time')}) of ${income['amount']} received on {income['date']}"
+        for income in data['income']
+    ])
+    expense_details = "; ".join([
+        f"{expense['title']} costing ${expense['amount']} on {expense['date']}"
+        for expense in data['expenses']
+    ])
+    wishlist_details = "; ".join([
+        f"{item['title']} costing ${item['cost']}, desired by {item['desiredDate']}"
+        for item in data['wishlist']
+    ])
 
     prompt = (
-        f"Given I have {income_details}, {expense_details}, what specific budgeting advice do you suggest to manage my expenses and save for {wishlist_details}? Provide actionable recommendations in bullet point format, focusing on specific tools, strategies, and actions. Avoid general advice. Talk about my income, expenses, and wishlist items (include their names). Only consider the data provided."
+        f"Given the financial data with dates: \n"
+        f"Incomes: {income_details}\n"
+        f"Expenses: {expense_details}\n"
+        f"Wishlist: {wishlist_details}\n"
+        "Provide specific, actionable budgeting and savings advice in simple text, formatted as bullet points. "
+        "Include all provided details for personalized insights. "
     )
     return prompt
 
 
 def filter_complete_points(text):
     points = text.split('\n')
-    filtered_points = [
-        point for point in points if point.strip().endswith('.')]
+    filtered_points = []
+    for point in points:
+        trimmed_point = point.strip()
+        condensed_point = ' '.join(trimmed_point.split())
+        if condensed_point.endswith('.'):
+            filtered_points.append(condensed_point)
     complete_text = '\n'.join(filtered_points)
     return complete_text
 
 
 def get_financial_insights(data):
-    API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
-    API_KEY = os.getenv('HF_API_KEY')
-    headers = {"Authorization": f"Bearer {API_KEY}"}
+    API_URL = "https://api.openai.com/v1/chat/completions"
+    API_KEY = os.getenv('OPENAI_API_KEY')
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
 
-    inputs = generate_prompt(data)
+    prompt = generate_prompt(data)
 
     payload = {
-        "inputs": inputs,
-        "parameters": {
-            "return_full_text": False,
-            "max_length": 1000,
-        }
+        "model": "gpt-3.5-turbo",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a financial advisor providing specific, actionable advice on budgeting, savings, and expense management. Focus on practical tips and clear recommendations tailored to the user's financial data, including income, expenses, and wishlist items. Avoid generic advice and ensure all suggestions are directly applicable and beneficial to the user's financial goals."
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        "max_tokens": 200,
+        "temperature": 0.7,
     }
 
     response = requests.post(API_URL, headers=headers, json=payload)
 
     if response.status_code == 200:
         output = response.json()
-        generated_text = output[0].get(
-            'generated_text', 'No insights generated.').strip()
+        generated_text = output['choices'][0]['message']['content'].strip()
 
         filtered_text = filter_complete_points(generated_text)
 
         return filtered_text
     else:
-        return {'error': f'Failed to fetch financial insights, status code: {response.status_code}'}
+        error_message = f'Failed to fetch financial insights, status code: {response.status_code}'
+        if response.status_code == 401:
+            error_message += ". Check if the API Key is correctly set."
+        elif response.status_code == 429:
+            error_message += ". API rate limit exceeded."
+        return {'error': error_message}
 
 
 def process_financial_data(data):

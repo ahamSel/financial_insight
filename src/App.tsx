@@ -72,6 +72,8 @@ function App() {
   const [income, setIncome] = useState(initialIncome);
   const [insights, setInsights] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   // Add a new expense, wishlist item, or income
   const handleAddEntry = (entryData: {
     type: string;
@@ -136,6 +138,8 @@ function App() {
       return;
     }
 
+    setIsLoading(true);
+
     const financialData = { expenses, wishlist, income };
 
     try {
@@ -155,6 +159,8 @@ function App() {
       simulateTypingEffect(cleanedInsights);
     } catch (error) {
       console.error("Error sending data to backend:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -170,12 +176,18 @@ function App() {
           />
           <IncomeList items={income} onRemove={removeIncomeHandler} />
         </div>
-        <button onClick={getFinancialInsights}>Get Insights</button>
-        <textarea
-          value={insights}
-          readOnly
-          className="insights-textarea"
-        ></textarea>
+        <button onClick={getFinancialInsights} disabled={isLoading}>
+          Get Insights
+        </button>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <textarea
+            value={insights}
+            readOnly
+            className="insights-textarea"
+          ></textarea>
+        )}
       </main>
     </div>
   );
