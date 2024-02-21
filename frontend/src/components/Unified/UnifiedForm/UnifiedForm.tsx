@@ -21,7 +21,7 @@ interface UnifiedFormProps {
 }
 
 const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
-  const [selectedType, setSelectedType] = useState("expense");
+  const [selectedType, setSelectedType] = useState("Expense");
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
@@ -42,11 +42,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
     }
 
     if (amount.trim().length === 0 || Number(amount) <= 0) {
-      setError(
-        `Please enter a valid ${
-          selectedType === "expense" ? "amount" : "cost"
-        }.`
-      );
+      setError("Please enter a valid amount.");
       return false;
     }
 
@@ -66,7 +62,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
       title,
       amount: parseFloat(amount),
       date: new Date(date),
-      ...(selectedType !== "wishlist" && { recurrence }),
+      ...(selectedType !== "Wishlist Item" && { recurrence }),
     };
 
     onAddEntry(entryData);
@@ -80,9 +76,9 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
         onChange={(e) => setSelectedType(e.target.value)}
         className={styles.selectStyles}
       >
-        <option value="expense">Expense</option>
-        <option value="wishlist">Wishlist</option>
-        <option value="income">Income</option>
+        <option value="Expense">Expense</option>
+        <option value="Wishlist Item">Wishlist Item</option>
+        <option value="Income">Income</option>
       </select>
 
       <input
@@ -96,7 +92,9 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        placeholder={selectedType === "expense" ? "Amount ($)" : "Cost ($)"}
+        placeholder={
+          selectedType === "Wishlist Item" ? "Cost ($)" : "Amount ($)"
+        }
         className={styles.inputStyles}
       />
       <input
@@ -106,7 +104,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
         className={styles.inputStyles}
       />
 
-      {(selectedType === "income" || selectedType === "expense") && (
+      {(selectedType === "Income" || selectedType === "Expense") && (
         <select
           value={recurrence}
           onChange={(e) => setRecurrence(e.target.value)}
@@ -123,7 +121,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
       {error && <p className={styles.errorStyles}>{error}</p>}
 
       <button type="submit" className={styles.buttonStyles}>
-        {`Add ${selectedType.charAt(0).toUpperCase() + selectedType.slice(1)}`}
+        {`Add ${selectedType}`}
       </button>
     </form>
   );
