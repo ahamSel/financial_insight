@@ -131,10 +131,10 @@ function App() {
     );
   };
 
-  const simulateTypingEffect = (text: string, index = 0) => {
+  const typeWriterEffect = (text: string, index = 0) => {
     if (index < text.length) {
       setInsights((prev) => prev + text[index]);
-      setTimeout(() => simulateTypingEffect(text, index + 1), 25);
+      setTimeout(() => typeWriterEffect(text, index + 1), 15);
     }
   };
 
@@ -164,7 +164,7 @@ function App() {
       const responseData = await response.json();
       const cleanedInsights = responseData.insights.replace(/\n +/g, "\n");
       setInsights("");
-      simulateTypingEffect(cleanedInsights);
+      typeWriterEffect(cleanedInsights);
     } catch (error) {
       console.error("Error sending data to backend:", error);
     } finally {
