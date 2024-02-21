@@ -90,24 +90,30 @@ function App() {
     date: Date;
     recurrence?: string;
   }) => {
+    const userInputDate = new Date(entryData.date);
+    const timeZoneOffset = userInputDate.getTimezoneOffset() * 60000;
+    const adjustedDate = new Date(userInputDate.getTime() + timeZoneOffset);
+
     if (entryData.type === "Expense") {
       const newExpense = {
         ...entryData,
-        id: `e${expenses.length + 1}`,
+        id: `e${new Date().getTime()}`,
+        date: adjustedDate,
       };
       setExpenses((prevExpenses) => [newExpense, ...prevExpenses]);
     } else if (entryData.type === "Wishlist Item") {
       const newWishlistItem = {
         title: entryData.title,
         cost: entryData.amount,
-        desiredDate: entryData.date,
-        id: `w${wishlist.length + 1}`,
+        desiredDate: adjustedDate,
+        id: `w${new Date().getTime()}`,
       };
       setWishlist((prevWishlist) => [newWishlistItem, ...prevWishlist]);
     } else if (entryData.type === "Income") {
       const newIncome = {
         ...entryData,
-        id: `i${income.length + 1}`,
+        id: `i${new Date().getTime()}`,
+        date: adjustedDate,
       };
       setIncome((prevIncome) => [newIncome, ...prevIncome]);
     }

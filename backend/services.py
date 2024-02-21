@@ -1,31 +1,39 @@
 import requests
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
 
+def format_date(date_str):
+    date_obj = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.000Z")
+    return date_obj.strftime("%Y-%b-%d")
+
+
 def generate_prompt(data):
+    current_date = datetime.now().strftime('%Y-%b-%d')
+
     income_details = "; ".join([
-        f"{income['title']} ({income.get('recurrence', 'one-time')}) of ${income['amount']} received on {income['date']}"
+        f"{income['title']} ({income.get('recurrence', 'one-time')}) of ${income['amount']} on {format_date(income['date'])}"
         for income in data['income']
     ])
     expense_details = "; ".join([
-        f"{expense['title']} costing ${expense['amount']} on {expense['date']}"
+        f"{expense['title']} costing ${expense['amount']} on {format_date(expense['date'])}"
         for expense in data['expenses']
     ])
     wishlist_details = "; ".join([
-        f"{item['title']} costing ${item['cost']}, desired by {item['desiredDate']}"
+        f"{item['title']} costing ${item['cost']}, desired by {format_date(item['desiredDate'])}"
         for item in data['wishlist']
     ])
 
     prompt = (
-        f"Given the financial data with dates: \n"
+        f"As of {current_date}, given the financial data: \n"
         f"Incomes: {income_details}\n"
         f"Expenses: {expense_details}\n"
         f"Wishlist: {wishlist_details}\n"
         "Provide specific, actionable budgeting and savings advice in simple text (avoid Markdown formatting), formatted as bullet points. "
-        "Include all provided details for personalized insights. All points should be directly about the the data provided."
+        "Include all provided details for personalized insights. All points should be directly about the data provided."
     )
     return prompt
 
