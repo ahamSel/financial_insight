@@ -90,13 +90,13 @@ function App() {
     date: Date;
     recurrence?: string;
   }) => {
-    if (entryData.type === "expense") {
+    if (entryData.type === "Expense") {
       const newExpense = {
         ...entryData,
         id: `e${expenses.length + 1}`,
       };
       setExpenses((prevExpenses) => [newExpense, ...prevExpenses]);
-    } else if (entryData.type === "wishlist") {
+    } else if (entryData.type === "Wishlist Item") {
       const newWishlistItem = {
         title: entryData.title,
         cost: entryData.amount,
@@ -104,7 +104,7 @@ function App() {
         id: `w${wishlist.length + 1}`,
       };
       setWishlist((prevWishlist) => [newWishlistItem, ...prevWishlist]);
-    } else if (entryData.type === "income") {
+    } else if (entryData.type === "Income") {
       const newIncome = {
         ...entryData,
         id: `i${income.length + 1}`,
