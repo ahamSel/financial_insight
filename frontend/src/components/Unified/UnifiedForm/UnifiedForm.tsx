@@ -121,7 +121,7 @@ const UnifiedForm: React.FC<UnifiedFormProps> = ({ onAddEntry }) => {
       {error && <p className={styles.errorStyles}>{error}</p>}
 
       <button type="submit" className={styles.buttonStyles}>
-        {`Add ${selectedType}`}
+        {`Add ${selectedType === "Wishlist Item" ? "Item" : selectedType}`}
       </button>
     </form>
   );
