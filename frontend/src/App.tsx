@@ -183,12 +183,21 @@ function App() {
       <main>
         <UnifiedForm onAddEntry={handleAddEntry} />
         <div className="lists-container">
-          <ExpenseList items={expenses} onRemove={removeExpenseHandler} />
-          <WishlistList
-            items={wishlist}
-            onRemoveItem={removeWishlistItemHandler}
-          />
-          <IncomeList items={income} onRemove={removeIncomeHandler} />
+          <div>
+            <h2>Expenses</h2>
+            <ExpenseList items={expenses} onRemove={removeExpenseHandler} />
+          </div>
+          <div>
+            <h2>Wishlist</h2>
+            <WishlistList
+              items={wishlist}
+              onRemoveItem={removeWishlistItemHandler}
+            />
+          </div>
+          <div>
+            <h2>Income</h2>
+            <IncomeList items={income} onRemove={removeIncomeHandler} />
+          </div>
         </div>
         <button onClick={getFinancialInsights} disabled={isLoading}>
           Get Insights
