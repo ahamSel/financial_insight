@@ -1,5 +1,5 @@
-Flask
-Flask-Cors
-requests
-python-dotenv
-datetime
+Flask==3.0.1
+Flask-Cors==4.0.0
+Flask-Limiter==3.5.1
+python-dotenv==1.0.1
+requests==2.31.0
