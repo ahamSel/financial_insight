@@ -19,7 +19,7 @@ def generate_prompt(data):
         for income in data['income']
     ])
     expense_details = "; ".join([
-        f"{expense['title']} costing ${expense['amount']} on {format_date(expense['date'])}"
+        f"{expense['title']} ({expense.get('recurrence', 'one-time')}) costing ${expense['amount']} on {format_date(expense['date'])}"
         for expense in data['expenses']
     ])
     wishlist_details = "; ".join([
