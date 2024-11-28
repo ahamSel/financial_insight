@@ -1,0 +1,23 @@
+.dashboard {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.totalExpenses {
+    margin-bottom: 1rem;
+}
+
+.totalExpenses h2 {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.totalExpenses p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #666;
+}

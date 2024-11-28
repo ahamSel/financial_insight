@@ -1,0 +1,91 @@
+.incomeItem {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 12px;
+  background-color: #e7f4e4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.incomeDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  border: 1px solid #d4edd9;
+  background-color: #1e7d22;
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.incomeDateMonth,
+.incomeDateYear {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.incomeDateDay {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.incomeDescription {
+  flex-grow: 1;
+  padding-right: 2rem;
+}
+
+.incomeDescription h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #2e4620;
+  word-break: break-word;
+}
+
+.incomeAmount {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2e8b57;
+  background-color: #aee1c9;
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: #1e7d22;
+  font-weight: bold;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  background-color: transparent;
+  box-shadow: none;
+  color: #ff6b6b;
+}
+
+.incomeRecurrence {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #2e8b57;
+  font-weight: bold;
+  background-color: #aee1c9;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  display: inline-block;
+}
